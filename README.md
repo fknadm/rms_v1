@@ -1,5 +1,9 @@
-Welcome to XP DB
+Welcome to XP RMS
 ________________________________
 
 Functions:
-Add new ticket, comment, upload image. 
+KITCHEN
+
+CASHIER
+
+ORDER
