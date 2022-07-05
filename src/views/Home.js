@@ -31,7 +31,7 @@ const Home = () => {
           </Col>
           <Col md>
             <p><b>{user.name}</b></p>
-            <p className="lead text-muted">Welcome, {user.nickname}</p>
+            <p className="lead text-muted">Welcome, {user.nickname} !</p>
           </Col>
         </Row>
       </Container>
