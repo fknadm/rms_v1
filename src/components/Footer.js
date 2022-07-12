@@ -4,7 +4,7 @@ const Footer = () => (
   <footer className="bg-light p-3 text-center">
     <div className="" />
     <p>
-      All rights Reserved. To infinity & beyond <br/><br/> <a href="https://foundingbrokers.com">Founding Brokers</a>
+      The Hooks Sijangkang <br/><br/> All rights Reserved 2022.  <br/><br/><a href="https://goo.gl/maps/FDTHRCs215iv3GaC7">Batu 7, Jalan Klang, Mukim Telok Panglima Garang 42500 Klang, Selangor, Malaysia</a>
     </p>
   </footer>
 );

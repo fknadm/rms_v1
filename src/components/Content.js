@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Row, Col, Table, } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import contentData from "../utils/contentData";
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart, Line } from 'react-chartjs-2'
 
