@@ -388,6 +388,53 @@ visibility: visible;
   flex-direction: column;
 }
 
+.tiles {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.table-tile {
+  height: 150px;
+  width: 150px;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey
+}
+
+.modalTotal_2 {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 3;
+    background-color: #ffffff;
+    text-align: center;
+    width: 85%;
+    height: 85%;
+    border-radius: 12px;
+}
+
+.exitrow {
+  width: 5%;
+}
+
+.exitdiv {
+  width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+
+}
+
 
 
 

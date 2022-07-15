@@ -190,7 +190,6 @@ const MainOrder = (from) => {
   return (
     <div className="order_assort">
       {mappedOrders}
-
     </div>
   );
 };

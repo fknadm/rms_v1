@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { useLocation, useHistory } from "react-router-dom";
 import ModalConfirm from "../components/ModalConfrim";
+import Tables from "../components/Tables";
 
 
 const Cashier = (something) => {
@@ -73,8 +74,10 @@ const Cashier = (something) => {
   return (
 
     <Fragment>
-      <div>
-        <button onClick={() => setView('complete')}>Show Complete Order</button> <button onClick={() => setView('pending')}>Show Pending Order</button>
+      <div className="command_row">
+        <button onClick={() => setView('complete')}>Show Complete Order</button>
+        <button onClick={() => setView('pending')}>Show Pending Order</button>
+        <button onClick={() => setView('table')}>Show Tables</button>
 
       </div>
       <div className="bounding-container" style={{ display: "flex" }}>
@@ -92,7 +95,7 @@ const Cashier = (something) => {
              :
              view === 'table' ?
              <>
-             Table
+             <Tables data={something.prop}/>
              </>
              :
              ''}
