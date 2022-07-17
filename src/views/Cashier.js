@@ -20,31 +20,8 @@ const Cashier = (something) => {
   const [focus, setFocus] = useState([])
   const [view, setView] = useState('pending')
 
-
-
   useEffect(() => {
   }, []);
-
-  // const toggleView = () => {
-  //   if (viewComplete) {
-  //     setView(false)
-  //   }
-  //   else {
-  //     setView(true)
-  //   }
-  // }
-
-
-
-  let history = useHistory()
-  let location = useLocation()
-  const { user } = useAuth0();
-
-  // const showHide = (dat) => {
-  //   setShow(dat)
-  //   console.log(show)
-  // }
-
 
   const sprop = {
     type: "all",
@@ -75,22 +52,24 @@ const Cashier = (something) => {
 
     <Fragment>
       <div className="command_row">
-        <button onClick={() => setView('complete')}>Show Complete Order</button>
-        <button onClick={() => setView('pending')}>Show Pending Order</button>
-        <button onClick={() => setView('table')}>Show Tables</button>
+      <button className="header_button pending" onClick={() => setView('pending')}>Pending Orders</button>
+        <button className="header_button complete" onClick={() => setView('complete')}>Complete Orders</button>
+        <button className="header_button tableb" onClick={() => setView('table')}>Tables</button>
 
       </div>
       <div className="bounding-container" style={{ display: "flex" }}>
         <div>
           {show === true ? <ModalConfirm setShow={setShow} data={focus} /> : ''}
-          {view === 'pending' ? <> 
+          {view === 'pending' ? 
+          <> 
           <h5>Pending</h5>
             <MainOrder style={{ width: "50%" }} data2={sprop2} setShow={setShow} setFocus={setFocus} data={something.prop} />
-            </>  :
+            </>  
+            :
              view === 'complete' ? 
              <>
              <h5>Complete</h5>
-             <MainOrder style={{ width: "50%" }} data2={sprop} data={something.prop} />
+             <MainOrder style={{ width: "50%" }} data2={sprop} setShow={setShow} setFocus={setFocus} data={something.prop} />
              </>
              :
              view === 'table' ?

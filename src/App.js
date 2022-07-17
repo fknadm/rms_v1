@@ -12,15 +12,15 @@ import Cashier from "./views/Cashier";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 import NavBarInt from "./components/NavBarInternal";
-import { globalFetch } from "./utils/fetch";
+import { globalFetch, singlePut } from "./utils/fetch";
 import Bar from "./views/Bar";
 import { useCollection, useCollectionData } from 'react-firebase-hooks/firestore'
-
-// styles
+import Noti from "./components/Noti"
+import noti from "./assets/bell.mp3"
+import useSound from "use-sound"
 import "./App.css";
-
-// fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
+
 initFontAwesome();
 firebase.initializeApp({
   apiKey: "AIzaSyDsvfUROgM0PD0maGPEY55N1MdQ-24CqyU",
@@ -38,49 +38,35 @@ const messagesRef = firestore.collection('orders');
 const query = messagesRef.orderBy('submitted')
 
 const App = () => {
-  const { isLoading, error, user } = useAuth0();
-
-
-  if (error) {
-    return <div>Oops... {error.message}</div>;
-  }
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
+  const [loadlist] = useCollectionData(query, { idField: 'id' });
   const [mainState, setMainState] = useState([]);
-  const [loadlist] = useCollectionData(query,{ idField: 'id' }); 
 
-  const fetchData = () => {
-    return loadlist
-};
+  const bell = () => {
+    const [play] = useSound(noti);
+    useEffect(() => {
+      play();
+    });
+  }
 
-  // const getRefreshed = () => {
-
-  //   console.log(loadlist,'first load')
-  //   if (loadlist) {
-  //     alert('hooray')
-  //     setMainState(loadlist)
-  //   }
-    
-  // }
 
   useEffect(() => {
-   const test =  fetchData();
-   if (test) {
-    setMainState(test)
-   }
-   else {
-    console.log('bad')
-   }
-  },);
+    if (loadlist) {
+      console.log('succ')
+      setMainState(loadlist)
+    }
+
+    if (!loadlist) {
+      console.log('fail')
+    }
+
+  });
 
   return (
     <Router history={history}>
       <div id="app" className="">
         <Container className="">
-          {user ? <NavBarInt prop={mainState} /> : ''}
+          {bell()}
+          <NavBarInt prop={mainState} />
           <Switch>
             <Route path="/kitchen" render={(prop) => <Kitchen prop={mainState} {...prop} />} />
             <Route path="/bar" render={(prop) => <Bar prop={mainState} {...prop} />} />

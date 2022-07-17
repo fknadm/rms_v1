@@ -4,53 +4,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newlogo from "../assets/fblog.png"
 import "../App.css"
 
-import {
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-
-import { useAuth0 } from "@auth0/auth0-react";
-
 const MainOrder = (from) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
   }, []);
 
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-  } = useAuth0();
-
   const toggle = () => setIsOpen(!isOpen);
 
-  console.log(from.data2)
+  console.log(from.data2, 'is this undef')
   const datatype = from.data2.order
-  const logoutWithRedirect = () =>
-    logout({
-      returnTo: window.location.origin,
-    });
+  console.log(datatype,'why undefined')
+
+  console.log(from.data2.type)
+
 
   console.log(from.data, 'app>kitchen>order')
 
   const dataArray = from.data
 
-  console.log(datatype)
 
   const total_pending = dataArray.filter(obj => {
-    if (datatype === 'pending') {
+    if (datatype  === 'pending') {
       return obj.status === 'pending'
     }
 
@@ -94,35 +69,41 @@ const MainOrder = (from) => {
           </div>
 
           <div className="order_card_body">
+
             {from.data2.type === 'food' ?
+            
               <div className="food-row">
                 <h5 className="cat-head">Food Items : {donefood.length + '/' + item.food.length
                 }</h5>
+
                 {item.food.map((food, i) => (
                   <div className="order_card_body_food_card" key={i}>
                     <div className="itemcard">
-                      <div className="itemtitle"><p><b>{food.f_name}</b></p> <a style={food.status === 'pending' ? { backgroundColor: "yellow" } : food.status === 'late' ? { backgroundColor: "red" } : food.status === 'ready' ? { backgroundColor: "blue" } : food.status === 'sent' ? { backgroundColor: "green" } : ''} className="progress-ind">{food.status}</a> </div>
+                      <div className="itemtitle"><p><b>{food.f_name}</b></p> <a style={food.status === 'pending' ? { backgroundColor: "yellow" } : food.status === 'late' ? { backgroundColor: "red" } : food.status === 'ready' ? { backgroundColor: "blue" } : food.status === 'sent' ? { backgroundColor: "green" } : {}} className="progress-ind">{food.status}</a> </div>
                       <div className="button-row">
                         <button onClick={() => { from.setShow(true); from.setFocus({ 'item': food.f_name, 'status': 'ready', txid: item.orderId, comms: food.comments, table: item.table_no }) }} className=" btn btn-success">Ready</button><button className="btn btn-next">Sent</button>
                       </div>
                     </div>
-
-
-
                     {food.comments ? <p className="comments"><b>Comments: </b>{food.comments}</p> : ''}
 
                   </div>
                 ))}
+
               </div>
-              : from.data2.type === 'drink' ?
+            
+              : 
+              
+              from.data2.type === 'drink' ?
+
                 <div className="drink-row">
                   <h5 className="cat-head">Beverages : {donebev.length + '/' + item.drink.length
                   }</h5>
+
                   {
                     item.drink.map((drink, i) => (
                       <div className="order_card_body_food_card" key={i}>
                         <div className="itemcard">
-                          <div className="itemtitle"><p><b>{drink.f_name}</b></p> <a style={drink.status === 'pending' ? { backgroundColor: "yellow" } : drink.status === 'late' ? { backgroundColor: "red" } : drink.status === 'ready' ? { backgroundColor: "blue" } : drink.status === 'sent' ? { backgroundColor: "green" } : ''} className="progress-ind">{drink.status}</a> </div>
+                          <div className="itemtitle"><p><b>{drink.f_name}</b></p> <a style={drink.status === 'pending' ? { backgroundColor: "yellow" } : drink.status === 'late' ? { backgroundColor: "red" } : drink.status === 'ready' ? { backgroundColor: "blue" } : drink.status === 'sent' ? { backgroundColor: "green" } : {}} className="progress-ind">{drink.status}</a> </div>
                           <div className="button-row">
                             <button onClick={() => { from.setShow(true); from.setFocus({ 'item': drink.f_name, status: 'ready', txid: item.orderId, comms: drink.comments, table: item.table_no }) }} className=" btn btn-success">Ready</button><button className="btn btn-next">Sent</button>
                           </div>
@@ -135,15 +116,21 @@ const MainOrder = (from) => {
                       </div>
                     ))}
                 </div>
-                : <><div className="food-row">
+
+                :
+                
+                from.data2.type === 'all' ?
+
+                <>
+                <div className="food-row">
                   <h5 className="cat-head">Food Items : {donefood.length + '/' + item.food.length
                   }</h5>
                   {item.food.map((food, i) => (
                     <div className="order_card_body_food_card" key={i}>
                       <div className="itemcard">
-                        <div className="itemtitle"><p><b>{food.f_name}</b></p> <a style={food.status === 'pending' ? { backgroundColor: "yellow" } : food.status === 'late' ? { backgroundColor: "red" } : food.status === 'ready' ? { backgroundColor: "blue" } : food.status === 'sent' ? { backgroundColor: "green" } : ''} className="progress-ind">{food.status}</a> </div>
+                        <div className="itemtitle"><p><b>{food.f_name}</b></p> <a style={food.status === 'pending' ? { backgroundColor: "yellow" } : food.status === 'late' ? { backgroundColor: "red" } : food.status === 'ready' ? { backgroundColor: "blue" } : food.status === 'sent' ? { backgroundColor: "green" } : {}} className="progress-ind">{food.status}</a> </div>
                         <div className="button-row">
-                          {item.status === 'pending' ? <><button onClick={() => { from.setShow(true); from.setFocus({ 'item': food.f_name, status: 'ready', txid: item.orderId, comms: food.comments, table: item.table_no }) }} className=" btn btn-success">Ready</button><button className="btn btn-next">Sent</button></> : <button>Delete</button>}
+                          {item.status === 'pending' ? <><button onClick={() => { from.setShow(true); from.setFocus({ 'item': food.f_name, status: 'ready', txid: item.orderId, comms: food.comments, table: item.table_no, itemid:food.tid }) }} className=" btn btn-success">Ready</button><button className="btn btn-next">Sent</button></> : <button>Delete</button>}
                         </div>
                       </div>
 
@@ -160,7 +147,7 @@ const MainOrder = (from) => {
                     {item.drink.map((drink, i) => (
                       <div className="order_card_body_food_card" key={i}>
                         <div className="itemcard">
-                          <div className="itemtitle"><p><b>{drink.f_name}</b></p> <a style={drink.status === 'pending' ? { backgroundColor: "yellow" } : drink.status === 'late' ? { backgroundColor: "red" } : drink.status === 'ready' ? { backgroundColor: "blue" } : drink.status === 'sent' ? { backgroundColor: "green" } : ''} className="progress-ind">{drink.status}</a> </div>
+                          <div className="itemtitle"><p><b>{drink.f_name}</b></p> <a style={drink.status === 'pending' ? { backgroundColor: "yellow" } : drink.status === 'late' ? { backgroundColor: "red" } : drink.status === 'ready' ? { backgroundColor: "blue" } : drink.status === 'sent' ? { backgroundColor: "green" } : {}} className="progress-ind">{drink.status}</a> </div>
                           <div className="button-row">
                             {item.status === 'pending' ? <><button onClick={() => { from.setShow(true); from.setFocus({ 'item': drink.f_name, status: 'ready', txid: item.orderId, comms: drink.comments, table: item.table_no }) }} className=" btn btn-success">Ready</button><button className="btn btn-next">Sent</button></> : <button>Delete</button>}
                           </div>
@@ -176,7 +163,7 @@ const MainOrder = (from) => {
                 </>
 
 
-            }
+            : ''}
           </div>
 
           <div className="order_card_footer">
@@ -186,7 +173,7 @@ const MainOrder = (from) => {
       )
     })
 
-
+ 
   return (
     <div className="order_assort">
       {mappedOrders}

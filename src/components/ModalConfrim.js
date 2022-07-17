@@ -3,6 +3,7 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import newlogo from "../assets/fblog.png"
 import "../App.css"
+import { singlePut } from "../utils/fetch";
 
 import cfm from "../assets/cfm.svg"
 
@@ -25,11 +26,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ModalConfirm = (from) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [current, setCurrent] = useState([])
 
   useEffect(() => {
       document.body.style.overflow = "hidden"
   },[]);
 
+  console.log(from.data)
+
+  const fetchId = (data) => {
+    singlePut(data)
+    // .then(from.setShow(false))
+  }
 
   if (isOpen === true) {
     console.log('OPEN!')
@@ -38,6 +46,7 @@ const ModalConfirm = (from) => {
     console.log('CLOSE')
 
   }
+  console.log(current,'current test')
 
   const {
     user,
@@ -59,7 +68,7 @@ const ModalConfirm = (from) => {
 
         </div>
         <div className="modalButtons">
-          <button className="btn-modal ready" onClick={() => { from.setShow(false) }}>Confirm</button><button className="btn-modal cancel" onClick={() => { from.setShow(false) }}>Cancel</button>
+          <button className="btn-modal ready" onClick={() => { fetchId(from.data) }}>Confirm</button><button className="btn-modal cancel" onClick={() => { from.setShow(false) }}>Cancel</button>
         </div>
       </div>
 

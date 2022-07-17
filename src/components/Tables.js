@@ -7,21 +7,6 @@ import MainOrder from "./MainOrder";
 import exit from "../assets/exit.svg"
 import ModalConfirm from "./ModalConfrim";
 
-import {
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Tables = (from) => {
@@ -114,7 +99,7 @@ const Tables = (from) => {
             <img className="exitrow" onClick={() => {toggleOpen()}} src={exit}/>
           </div>
           {selTable.map(item => (
-            <p>{item.table_no}</p>
+            <p className="tile">{item.table_no}</p>
           ))}
           <MainOrder setFocus={setFocus} setShow={setShow} data2={sprop} data={selTable}/>
           <MainOrder setFocus={setFocus} setShow={setShow} data2={sprop2} data={selTable}/>
@@ -128,7 +113,7 @@ const Tables = (from) => {
   for (let i = 1; i < tablesetDefault.tables; i++) {  
   tablelist.push( 
   <div onClick={checker(i) ? () => {showTable(i)} : ''} style={checker(i) ? {backgroundColor:'#d96464',color:'#ffffff'} : {backgroundColor:'#e3e3e3'}} className="table-tile" key={i}>
-    <p>{i}</p>
+    <p className="tile">{i}</p>
   </div>
   )
 }

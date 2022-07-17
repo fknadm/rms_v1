@@ -435,6 +435,46 @@ visibility: visible;
 
 }
 
+.tile {
+  font-size: 100px;
+    font-weight: 600;
+}
+
+.command_row {
+display: flex;
+width: 100%;
+align-items: center;
+justify-content: space-between;
+}
+
+.header_button {
+  width: 100%;
+  border: none;
+  padding: 20px 20px;
+  font-size: 20px;
+  margin-bottom:20px
+}
+
+.pending {
+  background-color: #db3535;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.complete {
+  background-color: #2dab6a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tableb {
+  background-color: #2d40ab;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+
+
 
 
 
