@@ -33,7 +33,8 @@ const Kitchen = (something) => {
 
   const sprop = {
     type: "food",
-    order:"pending"
+    order:"pending",
+    page:"kitchen"
 
   }
 

@@ -32,7 +32,8 @@ const Bar = (something) => {
 
   const sprop = {
     type: "drink",
-    order:"pending"
+    order:"pending",
+    page:"bar"
 
   }
 

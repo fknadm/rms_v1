@@ -49,6 +49,11 @@ const NavBarInt = (test) => {
       return obj.status === 'complete'
     })
 
+    const total_ready = test.prop.filter(obj => {
+      return obj.status === 'ready'
+    })
+
+
 
   return (
     <div className="nav-container">
@@ -57,6 +62,7 @@ const NavBarInt = (test) => {
           <img className="logo_sm" src={newlogo} />
           {/* <h5 style={{marginRight:"15px"}}>XP RMS System</h5> */}
           <h5>Pending Orders: {total_pending.length}</h5>
+          <h5>ReadyOrders: {total_ready.length}</h5>
           <h5>Complete Orders: {total_complete.length}</h5>
 
           <NavbarToggler onClick={toggle} />

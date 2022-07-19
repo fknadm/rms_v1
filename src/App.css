@@ -21,7 +21,9 @@
   align-items: flex-start;
   justify-content:  flex-start;
   font-size: 12px;
-  overflow-x:scroll
+  overflow-x:scroll;
+  overflow-y:scroll
+
 }
 
 .order_card {
@@ -52,7 +54,7 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.52);
   top: 0;
   bottom: 0;
   left: 0;
@@ -190,7 +192,7 @@ background-color:#ffffff
 }
 
 .navbar-collapse {
-  max-width: 50%;
+  max-width: 40%;
 }
 
 p {
@@ -353,7 +355,7 @@ visibility: visible;
 }
 
 .icon_img {
-  max-width: 100px;
+  max-width: 70px;
   width: 100%;
 }
 
@@ -436,8 +438,8 @@ visibility: visible;
 }
 
 .tile {
-  font-size: 100px;
-    font-weight: 600;
+  font-size: 50px;
+      font-weight: 600;
 }
 
 .command_row {
@@ -471,6 +473,20 @@ justify-content: space-between;
   background-color: #2d40ab;
   color: #ffffff;
   font-weight: 600;
+}
+
+html, body {
+  overscroll-behavior-x: none;
+}
+
+.paid-order {
+  width:100%;
+  margin: 10px 0px;
+  border: none;
+  background-color: #db3535;
+  color: #ffffff;
+  font-weight: 700;
+  padding:10px 5px
 }
 
 

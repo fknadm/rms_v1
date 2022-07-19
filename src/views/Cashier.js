@@ -26,27 +26,12 @@ const Cashier = (something) => {
   const sprop = {
     type: "all",
     order: "all",
-
-
   }
 
   const sprop2 = {
     type: "all",
-    pending: "pending"
-
-
+    page:"cashier"
   }
-
-  const modalWin = () => {
-    return (
-      <div>
-        <p>TEST MODAL</p>
-      </div>
-    )
-  }
-
-
-
 
   return (
 

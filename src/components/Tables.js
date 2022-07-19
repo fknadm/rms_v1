@@ -10,6 +10,7 @@ import ModalConfirm from "./ModalConfrim";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Tables = (from) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [selTable, setTable] = useState([])
   const [show, setShow] = useState(false)
@@ -32,46 +33,46 @@ const Tables = (from) => {
     setting: 'small'
   }
 
+
   const sprop = {
     type: "all",
     order: "all",
-
-
   }
 
   const sprop2 = {
     type: "all",
-    pending: "pending"
-
-
+    page:"cashier"
   }
-
-  const toggle = () => setIsOpen(!isOpen);
-
-  const logoutWithRedirect = () =>
-    logout({
-      returnTo: window.location.origin,
-    });
 
   console.log(from.data, 'app>kitchen>tables')
 
   const dataArray = from.data
     var tablelist = [];
     var tableOrders =[];
-    dataArray.map(item => {tableOrders.push(item.table_no)})
+    dataArray.map(item => {tableOrders.push({table:item.table_no,istat:item.status})})
 
-    console.log(tableOrders)
+    console.log(tableOrders,'look here')
 
     const checker = (c) => {
-      return(
-        tableOrders.includes(c)
-      )
+      const test = tableOrders.find(x => x.table === c)
+      if (test) {
+        return test.table
+      }
+    }
+
+    const checkerStat = (c) => {
+
+      const test = tableOrders.find(x => x.table === c)
+      if (test) {
+        return test.istat
+      }
     }
 
     const showTable = (num) => {
       const selectedTable = dataArray.filter(tab => {
-        return tab.table_no == num
+        return tab.table_no === num
       })
+
       setTable(selectedTable)
       toggleOpen()
     }
@@ -80,9 +81,11 @@ const Tables = (from) => {
       if (isOpen === false) {
           setIsOpen(true)
       }
+      
       if (isOpen === true) {
         setIsOpen(false)
-    }
+      }
+
     }
 
     console.log(selTable, 'seltable')
@@ -94,7 +97,7 @@ const Tables = (from) => {
       </div>
       <div className="modalInner">
         <div className="modalTotal_2">
-        {show === true ? <ModalConfirm setShow={setShow} data={focus} /> : ''}
+        {show === true ? <ModalConfirm setIsOpen={setIsOpen} setShow={setShow} data={focus} /> : ''}
           <div className="exitdiv">
             <img className="exitrow" onClick={() => {toggleOpen()}} src={exit}/>
           </div>
@@ -112,7 +115,7 @@ const Tables = (from) => {
 
   for (let i = 1; i < tablesetDefault.tables; i++) {  
   tablelist.push( 
-  <div onClick={checker(i) ? () => {showTable(i)} : ''} style={checker(i) ? {backgroundColor:'#d96464',color:'#ffffff'} : {backgroundColor:'#e3e3e3'}} className="table-tile" key={i}>
+  <div onClick={checker(i) ? () => {showTable(i)} : ''} style={checkerStat(i) === 'pending' ? {backgroundColor:'#d96464',color:'#ffffff'} : checkerStat(i) === 'complete'? {backgroundColor:'#2dab6a',color:'#ffffff'} : checkerStat(i) === 'ready' ? {backgroundColor:'#2d40ab',color:'#ffffff'}:{}} className="table-tile" key={i}>
     <p className="tile">{i}</p>
   </div>
   )
