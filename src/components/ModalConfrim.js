@@ -5,7 +5,6 @@ import newlogo from "../assets/fblog.png"
 import "../App.css"
 import { singlePut, remOrder } from "../utils/fetch";
 import Loading from "./Loading";
-import Moment from 'react-moment';
 
 
 import cfm from "../assets/cfm.svg"
