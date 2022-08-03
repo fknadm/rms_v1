@@ -18,12 +18,12 @@ const MainOrder = (from) => {
   const dataArray = from.data
   const context = from.data2
 
-  const ffilter = dataArray.filter(o => {
-    return o.status === 'pending' || o.status === 'ready'
-  })
+  // const ffilter = dataArray.filter(o => {
+  //   return o.status === 'pending' || o.status === 'ready'
+  // })
 
-  const fstatement = ffilter.map(x => x.food.every(x => x.status === 'ready'))
-  const sstatement = ffilter.map(x => x.drink.every(x => x.status === 'ready'))
+  // const fstatement = ffilter.map(x => x.food.every(x => x.status === 'ready'))
+  // const sstatement = ffilter.map(x => x.drink.every(x => x.status === 'ready'))
 
   const total_pending = dataArray.filter(obj => {
 
@@ -48,6 +48,7 @@ const MainOrder = (from) => {
   })
 
   const mappedOrders =
+
 
     total_pending.map(item => {
 
