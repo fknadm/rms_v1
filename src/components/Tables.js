@@ -29,7 +29,7 @@ const Tables = (from) => {
   } = useAuth0();
 
   const tablesetDefault = {
-    tables: 25,
+    tables: 41,
     setting: 'small'
   }
 
